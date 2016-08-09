@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tweetster</string>
+    <string name="login_label">Log in</string>
+    <string name="title_activity_timeline">Home Timeline</string>
+    <string name="welcome_to_twitter">Welcome to Tweetster.</string>
+    <string name="tag_line">Get real-time updates about </string>
+    <string name="tag_line2">what matters to you.</string>
+    <string name="tweet">Tweet</string>
+    <string name="screenname">screenName</string>
+    <string name="what_s_happening">What\'s Happening?</string>
+
+</resources>

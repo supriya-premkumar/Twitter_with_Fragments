@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivHeader"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_background" />
+
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/tvDetailName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/ivHeader"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:text="sample text"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/screenName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvDetailName"
+                android:layout_alignStart="@+id/tvDetailName"
+                android:layout_below="@+id/tvDetailName"
+                android:layout_gravity="left"
+                android:layout_marginBottom="5dp"
+                android:autoLink="all"
+                android:text="sample text"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvDetailName"
+                android:layout_alignStart="@+id/tvDetailName"
+                android:layout_below="@+id/screenName"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp" />
+
+            <ImageView
+                android:id="@+id/profileImageUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/description"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:id="@+id/follow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvDetailName"
+                android:layout_alignStart="@+id/tvDetailName"
+                android:layout_below="@+id/profileImageUrl"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/numFollowing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/replyTweet"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorAccent"
+                    android:src="@drawable/ic_reply_white_24dp" />
+
+
+                <TextView
+                    android:id="@+id/numFollowers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textSize="20sp"
+                    android:text="Reply" />
+            </LinearLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/sliding_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/follow"
+
+                app:tabMode="scrollable" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/sliding_tabs">
+
+            </android.support.v4.view.ViewPager>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/UserImage"
+            app:layout_anchor="@+id/ivHeader"
+            app:layout_anchorGravity="bottom|center"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:adjustViewBounds="true" />
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

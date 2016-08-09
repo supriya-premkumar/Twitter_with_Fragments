@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@android:color/white"></android.support.v7.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignBottom="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/darker_gray" />
+    <!--<ImageView-->
+    <!--android:id="@+id/twitterIcon"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/ic_icon_blue"-->
+    <!--android:backgroundTint="@android:color/white"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--/>-->
+    <!---->
+
+    <ImageView
+        android:id="@+id/ivProfileImage"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_below="@+id/toolbar"
+        android:layout_margin="10dp"
+        android:backgroundTint="@android:color/white"
+        android:src="@drawable/ic_icon_blue" />
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/ivProfileImage"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_toRightOf="@+id/ivProfileImage"
+        android:text="Compose Tweet"
+        android:textStyle="bold"
+
+        />
+
+    <TextView
+        android:id="@+id/tvUserScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tvUserName"
+        android:layout_alignStart="@+id/tvUserName"
+        android:layout_below="@id/tvUserName"
+        android:layout_marginTop="5dp"
+        android:text="@string/screenname"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textCompose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ivProfileImage"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignStart="@+id/ivProfileImage"
+        android:layout_below="@+id/ivProfileImage"
+        android:layout_marginRight="10dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="140"
+
+        >
+
+        <EditText
+            android:id="@+id/etTweet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/what_s_happening"
+            android:maxLength="140"
+
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnsubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textCompose"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/gradient"
+        android:text="@string/tweet"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>
