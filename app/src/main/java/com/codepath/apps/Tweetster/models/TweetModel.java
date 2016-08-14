@@ -117,28 +117,17 @@ public class TweetModel extends Model {
                     System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
             duration = relativeDate.replace("In", "");
             duration = duration.replace("ago", "");
-            if (duration.contains("minutes")) {
-                duration = duration.replace("minutes", "m");
-            }
-            if (duration.contains("minute")) {
-                duration = duration.replace("minute", "m");
-            }
-            if (duration.contains("hour")) {
-                duration = duration.replace("hour", "h");
-            }
-            if (duration.contains("hours")) {
-                duration = duration.replace("hours", "h");
-            }
 
-            if (duration.contains("seconds")) {
-                duration = duration.replace("seconds", "s");
+            String[] durationComponents = duration.split(" +");
+            String shortHand;
+            if (durationComponents[1].contains("second")) {
+                shortHand = "s";
+            } else if (durationComponents[1].contains("minute")){
+                shortHand = "m";
+            } else {
+                shortHand = "h";
             }
-            if (duration.contains("days")) {
-                duration = duration.replace("days", "d");
-            }
-            if (duration.contains("day")) {
-                duration = duration.replace("day", "d");
-            }
+            duration = durationComponents[0] + shortHand;
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -1,8 +1,16 @@
 package com.codepath.apps.Tweetster.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.codepath.apps.Tweetster.R;
 import com.codepath.apps.Tweetster.TwitterApplication;
 import com.codepath.apps.Tweetster.TwitterClient;
 import com.codepath.apps.Tweetster.models.TweetModel;
@@ -19,6 +27,34 @@ import cz.msebera.android.httpclient.Header;
 public class UserTimelineFragment extends TweetsFragment {
     private TwitterClient client;
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup parent, @Nullable Bundle savedInstanceState) {
+        final View v = inflater.inflate(R.layout.fragment_tweets, parent, false);
+
+        rvTweets = (RecyclerView) v.findViewById(R.id.rvTweets);
+
+        StaggeredGridLayoutManager gridLayoutManager =
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        gridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+        rvTweets.setLayoutManager(gridLayoutManager);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeContainer);
+        rvTweets.setAdapter(adapter);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                populateTimeline(0);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+        return v;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
