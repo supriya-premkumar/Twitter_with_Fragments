@@ -22,7 +22,12 @@
 
         <!--<item name="android:background">@android:color/white</item>-->
 
-
     </style>
+
+    <style name="ProfileActivity" parent="Base.V23.Theme.AppCompat.Light">
+    <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
 
 </resources>

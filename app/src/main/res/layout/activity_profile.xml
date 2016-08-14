@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.codepath.apps.simpleTweeter.Activities.UserProfileActivity">
+
+        <ImageView
+            android:id="@+id/ivHeader"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:adjustViewBounds="true"
+            android:background="@drawable/ic_background"
+            android:scaleType="fitXY" />
+
+
+        <TextView
+            android:id="@+id/acTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/ivHeader"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="sample text"
+
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/acHandle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/acTitle"
+            android:layout_alignStart="@+id/acTitle"
+            android:layout_below="@+id/acTitle"
+            android:layout_gravity="left"
+            android:layout_marginBottom="5dp"
+            android:text="sample text"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/acTitle"
+            android:layout_alignStart="@+id/acTitle"
+            android:layout_below="@+id/acHandle"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp" />
+
+        <LinearLayout
+            android:id="@+id/follow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/acTitle"
+            android:layout_alignStart="@+id/acTitle"
+            android:layout_below="@+id/description"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/numFollowing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Following" />
+
+            <TextView
+                android:id="@+id/numFollowers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Followers" />
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/sliding_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/follow"
+
+            app:tabMode="scrollable" />
+
+        <FrameLayout
+            android:id="@+id/viewpagerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/sliding_tabs"
+            android:background="@android:color/white">
+
+        </FrameLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/UserImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        app:layout_anchor="@+id/ivHeader"
+        app:layout_anchorGravity="bottom|center" />
+</android.support.design.widget.CoordinatorLayout>

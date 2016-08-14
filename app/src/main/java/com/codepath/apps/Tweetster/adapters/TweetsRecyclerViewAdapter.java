@@ -14,6 +14,7 @@ import android.widget.VideoView;
 import com.bumptech.glide.Glide;
 import com.codepath.apps.Tweetster.R;
 import com.codepath.apps.Tweetster.activities.DetailedTweetActivity;
+import com.codepath.apps.Tweetster.activities.UserProfileActivity;
 import com.codepath.apps.Tweetster.models.TweetModel;
 
 import org.parceler.Parcels;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class TweetsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static class ViewHolder1 extends RecyclerView.ViewHolder {
+    public class ViewHolder1 extends RecyclerView.ViewHolder {
         public ImageView ivProfilePhoto;
         public TextView tvUserName;
         public TextView tvName;
@@ -93,15 +94,25 @@ public class TweetsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             ivResponse = (ImageView) itemView.findViewById(R.id.ivReply);
 //            vvVideo = (VideoView) itemView.findViewById(R.id.vvVideo);
 
+//            ivProfilePhoto.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent i =new Intent(getmContext(), UserProfileActivity.class);
+//                    i.putExtra("screeb_name", )
+////                    i.putExtra("user",Parcels.wrap(user));
+//                    startActivity(i);
+//                }
+//            });
+
         }
 
     }
 
-    private List<Object> mTweets;
+    private List<TweetModel> mTweets;
     private final int IMG_ARTICLE = 1, TXT_ARTICLE = 2;
     private Context mContext;
 
-    public TweetsRecyclerViewAdapter(Context context, List<Object> tweets) {
+    public TweetsRecyclerViewAdapter(Context context, List<TweetModel> tweets) {
         this.mTweets = tweets;
         this.mContext = context;
     }
@@ -133,6 +144,13 @@ public class TweetsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                 startDetailedTweetActivity(position);
             }
         });
+
+        vh1.ivProfilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startProfileActivity(position);
+            }
+        });
         configureViewHolder(vh1, position);
     }
 
@@ -140,6 +158,13 @@ public class TweetsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         Intent intent = new Intent(getmContext(), DetailedTweetActivity.class);
         Object tweets = mTweets.get(position);
         intent.putExtra("txt_tweet", Parcels.wrap((TweetModel) tweets));
+        getmContext().startActivity(intent);
+    }
+
+    private void startProfileActivity(int position) {
+        Intent intent = new Intent(getmContext(), UserProfileActivity.class);
+        Object tweets = mTweets.get(position);
+        intent.putExtra("screen_name", ((TweetModel) tweets).getScreenName() );
         getmContext().startActivity(intent);
     }
 

@@ -193,8 +193,8 @@ public class TweetModel extends Model {
         }
     }
 
-    public static ArrayList<Object> fromJsonArray(JSONArray array) {
-        ArrayList<Object> results = new ArrayList<>();
+    public static ArrayList<TweetModel> fromJsonArray(JSONArray array) {
+        ArrayList<TweetModel> results = new ArrayList<>();
 
 
         for (int x = 0; x < array.length(); x++) {

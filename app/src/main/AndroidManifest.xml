@@ -49,14 +49,12 @@
         </activity>
         <activity
             android:name=".activities.TimelineActivity"
-            android:theme="@style/TimelineActivity">
-
-        </activity>
+            android:theme="@style/TimelineActivity"/>
         <activity
             android:name=".activities.DetailedTweetActivity"
-            android:theme="@style/TimelineActivity">
-
-        </activity>
+            android:theme="@style/TimelineActivity"/>
+        <activity android:name=".activities.UserProfileActivity"
+                android:theme="@style/ProfileActivity"/>
     </application>
 
 </manifest>
