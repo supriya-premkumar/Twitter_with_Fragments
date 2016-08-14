@@ -31,6 +31,7 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        String screenName = getIntent().getStringExtra("screen_name");
 
         if (!isOnline()) {
             Toast.makeText(this, "Network unavailable. Try again later.", Toast.LENGTH_LONG).show();
@@ -40,7 +41,7 @@ public class UserProfileActivity extends AppCompatActivity {
         } else {
 
             client = TwitterApplication.getRestClient();
-            client.getUserInfo(new JsonHttpResponseHandler() {
+            client.getUserInfo(screenName, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     user = UserProfileModel.fromJson(response);
@@ -49,7 +50,7 @@ public class UserProfileActivity extends AppCompatActivity {
             });
 
 
-            String screenName = getIntent().getStringExtra("screen_name");
+
 
 
             if (savedInstanceState == null) {
