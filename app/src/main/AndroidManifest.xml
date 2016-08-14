@@ -55,6 +55,8 @@
             android:theme="@style/TimelineActivity"/>
         <activity android:name=".activities.UserProfileActivity"
                 android:theme="@style/ProfileActivity"/>
+        <activity android:name=".activities.UsersListActivity"
+            android:theme="@style/ProfileActivity"/>
     </application>
 
 </manifest>

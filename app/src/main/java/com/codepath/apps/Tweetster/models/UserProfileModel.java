@@ -5,10 +5,12 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -125,6 +127,25 @@ public class UserProfileModel extends Model {
 //    public static UserProfileModel getCurrentUser() {
 //        return new Select().from(UserProfileModel.class).where("dummy_id = 0").executeSingle();
 //    }
+
+    public static ArrayList<UserProfileModel> fromJsonArray(JSONArray array) {
+        ArrayList<UserProfileModel> results = new ArrayList<>();
+
+
+        for (int x = 0; x < array.length(); x++) {
+            try {
+                JSONObject userJson = array.getJSONObject(x);
+                UserProfileModel user = new UserProfileModel(userJson);
+                user.save();
+                results.add(user);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return results;
+    }
 
 
 }

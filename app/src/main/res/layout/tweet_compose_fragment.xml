@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@android:color/white"></android.support.v7.widget.Toolbar>
+        android:background="@android:color/white"/>
 
     <View
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
         android:src="@drawable/ic_icon_blue" />
 
     <TextView
-        android:id="@+id/tvUserName"
+        android:id="@+id/tvUserProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/ivProfileImage"
@@ -59,9 +59,9 @@
         android:id="@+id/tvUserScreenName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tvUserName"
-        android:layout_alignStart="@+id/tvUserName"
-        android:layout_below="@id/tvUserName"
+        android:layout_alignLeft="@id/tvUserProfileName"
+        android:layout_alignStart="@+id/tvUserProfileName"
+        android:layout_below="@id/tvUserProfileName"
         android:layout_marginTop="5dp"
         android:text="@string/screenname"
         android:textStyle="italic" />

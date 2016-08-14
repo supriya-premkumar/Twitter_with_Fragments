@@ -1,8 +1,10 @@
 package com.codepath.apps.Tweetster.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,10 +51,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 }
             });
 
-
-
-
-
             if (savedInstanceState == null) {
                 //get the screenName for the activity that launches this
                 // create the userTimeline Fragment
@@ -83,7 +81,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
-    public void setProfileHeaderViewElements(UserProfileModel user){
+    public void setProfileHeaderViewElements(final UserProfileModel user){
         getSupportActionBar().setTitle(user.getName());
 
         ImageView background = (ImageView) findViewById(R.id.ivHeader);
@@ -108,12 +106,32 @@ public class UserProfileActivity extends AppCompatActivity {
         if (user.getFriends_count() != null)
             following.setText(formatter.format(Integer.parseInt(user.getFriends_count())));
 
-
         ImageView UserImage = (ImageView) findViewById(R.id.UserImage);
         Glide.with(UserProfileActivity.this)
                 .load(user.getProfile_image_url())
                 .bitmapTransform(new RoundedCornersTransformation(UserProfileActivity.this, 4, 1, RoundedCornersTransformation.CornerType.ALL))
                 .into(UserImage);
 
+        followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfileActivity.this, UsersListActivity.class);
+                intent.putExtra("user_id",user.getId1());
+                intent.putExtra("users_type","Followers");
+                startActivity(intent);
+            }
+        });
+
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfileActivity.this, UsersListActivity.class);
+                intent.putExtra("user_id",user.getId1());
+                intent.putExtra("users_type","Following");
+                startActivity(intent);
+            }
+        });
     }
+
+
 }

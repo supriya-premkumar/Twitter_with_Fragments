@@ -52,7 +52,7 @@ public class TweetComposeFragment extends DialogFragment {
 //        toolbar.inflateMenu(R.menu.menu_items);
 
         client = TwitterApplication.getRestClient();
-        TextView tvUserName = (TextView) v.findViewById(R.id.tvUserName);
+        TextView tvUserName = (TextView) v.findViewById(R.id.tvUserProfileName);
         ImageView ivProfilePhoto = (ImageView) v.findViewById(R.id.ivProfileImage);
         TextView tvScreenName = (TextView) v.findViewById(R.id.tvUserScreenName);
         tvScreenName.setVisibility(View.GONE);

@@ -59,7 +59,7 @@ public class TweetReplyFragment extends DialogFragment {
         String profile_image_url = getArguments().getString("profile_img_url");
 
         client = TwitterApplication.getRestClient();
-        TextView tvUserName = (TextView) v.findViewById(R.id.tvUserName);
+        TextView tvUserName = (TextView) v.findViewById(R.id.tvUserProfileName);
         ImageView ivProfilePhoto = (ImageView) v.findViewById(R.id.ivProfileImage);
         TextView tvScreenName = (TextView) v.findViewById(R.id.tvUserScreenName);
         TextInputLayout compose = (TextInputLayout) v.findViewById(R.id.textCompose);
