@@ -56,7 +56,7 @@ public class UsersListActivity extends AppCompatActivity {
     }
 
     public void fetchAllFollowers() {
-        TwitterApplication.getRestClient().getUserFollowing(userId, new JsonHttpResponseHandler() {
+        TwitterApplication.getRestClient().getUserFollowers(userId, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {
                 try {

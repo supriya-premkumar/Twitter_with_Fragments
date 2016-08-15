@@ -23,7 +23,7 @@ import java.util.List;
 
 public class TweetsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public class ViewHolder1 extends RecyclerView.ViewHolder {
+    public static class ViewHolder1 extends RecyclerView.ViewHolder {
         public ImageView ivProfilePhoto;
         public TextView tvUserName;
         public TextView tvName;

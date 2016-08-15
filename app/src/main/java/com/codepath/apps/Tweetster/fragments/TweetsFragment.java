@@ -30,7 +30,6 @@ public abstract class TweetsFragment extends Fragment {
         //construct the adapter from data source
         adapter = new TweetsRecyclerViewAdapter(getActivity(), tweets);
 
-
     }
 
     public void addAll(List<TweetModel> tweet) {

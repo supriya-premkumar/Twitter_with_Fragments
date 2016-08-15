@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.codepath.apps.Tweetster.EndlessRecyclerViewScrollListener;
 import com.codepath.apps.Tweetster.R;
 import com.codepath.apps.Tweetster.TwitterApplication;
 import com.codepath.apps.Tweetster.TwitterClient;
@@ -41,7 +42,7 @@ public class HomeTimelineFragment extends TweetsFragment {
         rvTweets.setLayoutManager(gridLayoutManager);
 
         swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeContainer);
-        rvTweets.setAdapter(adapter);
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -53,6 +54,17 @@ public class HomeTimelineFragment extends TweetsFragment {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+        rvTweets.addOnScrollListener(new EndlessRecyclerViewScrollListener(gridLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+//                customLoadMoreDataFromApi(page);
+                Log.d("SCROLLED X TIMES", "Abhi");
+                populateTimeline(page);
+            }
+        });
+        rvTweets.setAdapter(adapter);
 
         return v;
     }
@@ -64,15 +76,14 @@ public class HomeTimelineFragment extends TweetsFragment {
         populateTimeline(0);
     }
 
-    void populateTimeline(int page) {
+    void populateTimeline(final int page) {
         long since_id = 1;
         long max_id = 1;
         if (page == 0) {
             tweets.clear();
-        }
-        if (!tweets.isEmpty()) {
-            max_id = Long.valueOf(((TweetModel) tweets.get(0)).getTweetId()) - 1;
-            since_id = Long.valueOf(((TweetModel) tweets.get(tweets.size() - 1)).getTweetId());
+        }else if (!tweets.isEmpty()) {
+            since_id = Long.valueOf(((TweetModel) tweets.get(0)).getTweetId());
+            max_id = Long.valueOf(((TweetModel) tweets.get(tweets.size() - 1)).getTweetId()) - 1;
         }
 
         if (!isOnline()) {
@@ -82,6 +93,7 @@ public class HomeTimelineFragment extends TweetsFragment {
 
         } else {
         client.getHomeTimeline(since_id, max_id, page, new JsonHttpResponseHandler() {
+
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
                 Log.d("onSuccess Timeline: ", json.toString());
@@ -93,7 +105,8 @@ public class HomeTimelineFragment extends TweetsFragment {
                 addAll(TweetModel.fromJsonArray(json));
 //                    xxxxxxxxxxxxxxxxxxxxx
 
-                Log.d("Arraylist", json.toString());
+                Log.d("qqqqqq", String.valueOf(json.length()));
+                Log.d("qqqqqq", String.valueOf(page));
 //                rvTweets.scrollToPosition(0);
 
             }
