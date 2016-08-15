@@ -122,7 +122,7 @@ public class TwitterClient extends OAuthBaseClient {
         String apiURL = getApiUrl("followers/list.json");
         RequestParams params = new RequestParams();
         params.put("user_id",user_id);
-        params.put("count",25);
+        params.put("count",100);
         client.get(apiURL,params,handler);
     }
 
@@ -130,7 +130,7 @@ public class TwitterClient extends OAuthBaseClient {
         String apiURL = getApiUrl("friends/list.json");
         RequestParams params = new RequestParams();
         params.put("user_id",user_id);
-        params.put("count",25);
+        params.put("count",100);
         client.get(apiURL,params,handler);
     }
 
