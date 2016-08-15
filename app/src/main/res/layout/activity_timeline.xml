@@ -28,7 +28,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:backgroundTint="@android:color/white"
-        android:src="@drawable/ic_search" />
+        android:src="@drawable/ic_search"
+        android:theme="@style/EditTextTheme"/>
 
     <ImageView
         android:id="@+id/twitterIcon"
@@ -41,14 +42,14 @@
 
     <ImageView
         android:id="@+id/follow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:backgroundTint="@android:color/white"
-        android:src="@drawable/ic_connect"
-        android:onClick="onProfileView"/>
+        android:src="@drawable/ic_profile"
+        android:onClick="onProfileView"
+        android:layout_alignBottom="@+id/twitterIcon"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"

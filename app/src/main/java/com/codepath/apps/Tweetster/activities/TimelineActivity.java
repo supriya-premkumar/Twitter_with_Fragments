@@ -1,5 +1,6 @@
 package com.codepath.apps.Tweetster.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,22 +18,19 @@ import com.codepath.apps.Tweetster.R;
 import com.codepath.apps.Tweetster.fragments.HomeTimelineFragment;
 import com.codepath.apps.Tweetster.fragments.MentionsTimelineFragment;
 import com.codepath.apps.Tweetster.fragments.TweetComposeFragment;
-import com.codepath.apps.Tweetster.fragments.TweetsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TimelineActivity extends FragmentActivity {
+public class TimelineActivity extends FragmentActivity implements DialogInterface.OnDismissListener {
 
 
-//    implements DialogInterface.OnDismissListener
-    private TweetsFragment tweetsFragment;
+    //    implements DialogInterface.OnDismissListener
+    private HomeTimelineFragment homeTimelineFragment;
     private Toolbar toolbar;
 
-
-    @BindView(R.id.fabCompose) FloatingActionButton fabCompose;
-
-
+    @BindView(R.id.fabCompose)
+    FloatingActionButton fabCompose;
 
 
     @Override
@@ -40,14 +38,6 @@ public class TimelineActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
         ButterKnife.bind(this);
-//        toolbar.findViewById(R.id.follow).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(TimelineActivity.this, "Toolbar title clicked", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-
         fabCompose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +46,7 @@ public class TimelineActivity extends FragmentActivity {
         });
 
         //Get the viewpager
-        ViewPager viewPager = (ViewPager)findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         //set the viewpager adapter to the pager
         viewPager.setAdapter(new TweetsPagerAdapter(getSupportFragmentManager()));
         //find the sliding tabstrip
@@ -65,18 +55,19 @@ public class TimelineActivity extends FragmentActivity {
         tabStrip.setViewPager(viewPager);
     }
 
-//    @Override
-//    public void onDismiss(final DialogInterface dialog) {
-//        populateTimeline(0);
-//    }
-
-
 
     private void composeTweetFragment() {
         FragmentManager fm = getSupportFragmentManager();
         TweetComposeFragment filterSettingsFragment = TweetComposeFragment.newInstance("Filter Results");
         filterSettingsFragment.show(fm, "filter_settings_fragment");
     }
+
+    @Override
+    public void onDismiss(DialogInterface dialogInterface) {
+        homeTimelineFragment.populateTimeline(0);
+
+    }
+
 
     // Return the order of the pager in the view fragment
     public class TweetsPagerAdapter extends FragmentPagerAdapter {
@@ -88,15 +79,16 @@ public class TimelineActivity extends FragmentActivity {
             super(fragmentManager);
         }
 
-        //The oder and creation of fragments within the pager
+        //The order and creation of fragments within the pager
         @Override
         public Fragment getItem(int position) {
-            if (position == 0){
-                return new HomeTimelineFragment();
-            }else if (position == 1){
+            if (position == 0) {
+                homeTimelineFragment = new HomeTimelineFragment();
+                return homeTimelineFragment;
+            } else if (position == 1) {
                 return new MentionsTimelineFragment();
-            }else{
-                return  null;
+            } else {
+                return null;
             }
         }
 
@@ -113,13 +105,15 @@ public class TimelineActivity extends FragmentActivity {
         }
     }
 
-    public void onProfileView(View view){
+    public void onProfileView(View view) {
         Intent i = new Intent(this, UserProfileActivity.class);
         startActivity(i);
         Toast.makeText(TimelineActivity.this,
                 "Toolbar icon clicked", Toast.LENGTH_SHORT).show();
-
-
     }
 
+    public void onSearchView(View view) {
+        Intent i = new Intent(this, SearchActivity.class);
+        startActivity(i);
+    }
 }

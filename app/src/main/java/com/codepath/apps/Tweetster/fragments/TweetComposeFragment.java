@@ -29,6 +29,7 @@ import cz.msebera.android.httpclient.Header;
  */
 public class TweetComposeFragment extends DialogFragment {
     private TwitterClient client;
+
     public TweetComposeFragment() {
 
     }
@@ -69,8 +70,6 @@ public class TweetComposeFragment extends DialogFragment {
                 dismiss();
             }
         });
-
-
         return v;
     }
 
@@ -84,7 +83,7 @@ public class TweetComposeFragment extends DialogFragment {
     }
 
 
-    private void postTweet(String tweet){
+    private void postTweet(String tweet) {
         client.postTweet(tweet, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
@@ -95,6 +94,7 @@ public class TweetComposeFragment extends DialogFragment {
                 //load the model data into list view
 
                 Log.d("COMPOSETWEET:", json.toString());
+
 
 //                rvTweets.scrollToPosition(0);
 

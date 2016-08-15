@@ -1,7 +1,6 @@
 package com.codepath.apps.Tweetster;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -47,13 +46,11 @@ public class TwitterClient extends OAuthBaseClient {
         //specify the params
 
         RequestParams params = new RequestParams();
-        params.put("count", 25);
+        params.put("count", 50);
         if (page == 0) {
-            Log.d("PAGINATIONMUDDU:", "Page: " + String.valueOf(page) + " since_id: " + String.valueOf(since_id) + " max_id: " + String.valueOf(max_id));
             params.put("since_id", since_id);
 
         } else {
-            Log.d("PAGINATIONMUDDU:", "Page: " + String.valueOf(page) + " since_id: " + String.valueOf(since_id) + " max_id: " + String.valueOf(max_id));
             params.put("since_id", since_id);
             params.put("max_id", max_id);
         }
@@ -95,7 +92,7 @@ public class TwitterClient extends OAuthBaseClient {
         //specify the params
 
         RequestParams params = new RequestParams();
-        params.put("count", 25);
+        params.put("count", 50);
         //Execute the request
         getClient().get(apiUrl, params, handler);
 
@@ -136,4 +133,26 @@ public class TwitterClient extends OAuthBaseClient {
         params.put("count",25);
         client.get(apiURL,params,handler);
     }
+
+    public void searchTweets(String query, long maxId,  long sinceId, boolean isScrolled,
+                             boolean isRefreshed,
+                             AsyncHttpResponseHandler handler) {
+        String apiUrl = getApiUrl("search/tweets.json");
+        //Execute the request
+        RequestParams params = new RequestParams();
+        params.put("q", query);
+
+        if (isScrolled) {
+            params.put("max_id", maxId);
+            params.put("count", 25);
+        } else if(isRefreshed) {
+            params.put("since_id", sinceId);
+        } else {
+            params.put("count", 25);
+            params.put("since_id", 1); //get latest tweets
+        }
+
+        getClient().get(apiUrl, params, handler);
+    }
+
 }

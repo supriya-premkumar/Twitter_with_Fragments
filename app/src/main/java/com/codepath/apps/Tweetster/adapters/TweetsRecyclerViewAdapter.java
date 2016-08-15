@@ -2,6 +2,8 @@ package com.codepath.apps.Tweetster.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.codepath.apps.Tweetster.R;
 import com.codepath.apps.Tweetster.activities.DetailedTweetActivity;
 import com.codepath.apps.Tweetster.activities.UserProfileActivity;
+import com.codepath.apps.Tweetster.fragments.TweetReplyFragment;
 import com.codepath.apps.Tweetster.models.TweetModel;
 
 import org.parceler.Parcels;
@@ -30,7 +33,26 @@ public class TweetsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         public TextView tvBody;
         public TextView tvTimeStamp;
         public ImageView ivPoster;
-        public ImageView ivResponse;
+        public ImageView ivReply;
+        public ImageView ivRetweet;
+        public ImageView ivStar;
+
+        public ImageView getIvStar() {
+            return ivStar;
+        }
+
+        public void setIvStar(ImageView ivStar) {
+            this.ivStar = ivStar;
+        }
+
+        public ImageView getIvRetweet() {
+            return ivRetweet;
+        }
+
+        public void setIvRetweet(ImageView ivRetweet) {
+            this.ivRetweet = ivRetweet;
+        }
+
         public VideoView vvVideo;
 
 
@@ -38,8 +60,8 @@ public class TweetsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             return ivPoster;
         }
 
-        public ImageView getIvResponse() {
-            return ivResponse;
+        public ImageView getIvReply() {
+            return ivReply;
         }
 
         public TextView getTvTimeStamp() {
@@ -91,25 +113,14 @@ public class TweetsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvTimeStamp = (TextView) itemView.findViewById(R.id.tvTimeStamp);
             ivPoster = (ImageView) itemView.findViewById(R.id.ivMedia);
-            ivResponse = (ImageView) itemView.findViewById(R.id.ivReply);
-//            vvVideo = (VideoView) itemView.findViewById(R.id.vvVideo);
-
-//            ivProfilePhoto.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent i =new Intent(getmContext(), UserProfileActivity.class);
-//                    i.putExtra("screeb_name", )
-////                    i.putExtra("user",Parcels.wrap(user));
-//                    startActivity(i);
-//                }
-//            });
-
+            ivReply = (ImageView) itemView.findViewById(R.id.ivReply);
+            ivRetweet = (ImageView) itemView.findViewById(R.id.ivRetweet);
+            ivStar = (ImageView) itemView.findViewById(R.id.ivStar);
         }
 
     }
 
     private List<TweetModel> mTweets;
-    private final int IMG_ARTICLE = 1, TXT_ARTICLE = 2;
     private Context mContext;
 
     public TweetsRecyclerViewAdapter(Context context, List<TweetModel> tweets) {
@@ -151,6 +162,13 @@ public class TweetsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                 startProfileActivity(position);
             }
         });
+
+        vh1.ivReply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                replyToTweet(position);
+            }
+        });
         configureViewHolder(vh1, position);
     }
 
@@ -190,6 +208,14 @@ public class TweetsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
                 Glide.with(getmContext()).load(thumbnail).fitCenter().into(vh1.getIvProfilePhoto());
             }
         }
+    }
+
+    private void replyToTweet(int position) {
+        TweetModel tweet = mTweets.get(position);
+        FragmentManager fm = ((FragmentActivity)getmContext()).getSupportFragmentManager();
+        TweetReplyFragment replyFragment = TweetReplyFragment.newInstance(tweet.getTweetId(),tweet.getUserName(), tweet.getScreenName(), tweet.getProfileImageUrl());
+        replyFragment.show(fm, "filter_settings_fragment");
+
     }
 
 

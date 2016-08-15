@@ -80,9 +80,9 @@ public class DetailedTweetActivity extends AppCompatActivity {
 
     }
 
-    private void replyTweet(){
+    public void replyTweet(){
         FragmentManager fm = getSupportFragmentManager();
-        TweetReplyFragment replyFragment = TweetReplyFragment.newInstance(tweet.getTweetId(),tweet.getUserName(), tweet.getScreenName(), tweet.getProfileImageUrl());
+        TweetReplyFragment replyFragment = TweetReplyFragment.newInstance(tweet.getTweetId(), tweet.getUserName(), tweet.getScreenName(), tweet.getProfileImageUrl());
         replyFragment.show(fm, "filter_settings_fragment");
     }
 

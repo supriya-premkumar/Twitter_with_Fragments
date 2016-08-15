@@ -60,7 +60,6 @@ public class HomeTimelineFragment extends TweetsFragment {
                 // Triggered only when new data needs to be appended to the list
                 // Add whatever code is needed to append new items to the bottom of the list
 //                customLoadMoreDataFromApi(page);
-                Log.d("SCROLLED X TIMES", "Abhi");
                 populateTimeline(page);
             }
         });
@@ -76,12 +75,12 @@ public class HomeTimelineFragment extends TweetsFragment {
         populateTimeline(0);
     }
 
-    void populateTimeline(final int page) {
+    public void populateTimeline(final int page) {
         long since_id = 1;
         long max_id = 1;
         if (page == 0) {
             tweets.clear();
-        }else if (!tweets.isEmpty()) {
+        }else if (page > 0) {
             since_id = Long.valueOf(((TweetModel) tweets.get(0)).getTweetId());
             max_id = Long.valueOf(((TweetModel) tweets.get(tweets.size() - 1)).getTweetId()) - 1;
         }
@@ -103,12 +102,6 @@ public class HomeTimelineFragment extends TweetsFragment {
                 //load the model data into list view
 
                 addAll(TweetModel.fromJsonArray(json));
-//                    xxxxxxxxxxxxxxxxxxxxx
-
-                Log.d("qqqqqq", String.valueOf(json.length()));
-                Log.d("qqqqqq", String.valueOf(page));
-//                rvTweets.scrollToPosition(0);
-
             }
 
             @Override

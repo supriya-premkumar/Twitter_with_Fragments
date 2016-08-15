@@ -9,6 +9,8 @@
     <string name="tag_line2">what matters to you.</string>
     <string name="tweet">Tweet</string>
     <string name="screenname">screenName</string>
+    <string name="search">Type anything to search</string>
+
     <string name="what_s_happening">What\'s Happening?</string>
 
 </resources>

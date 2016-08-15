@@ -40,8 +40,7 @@ public class UsersListActivity extends AppCompatActivity {
 
         if (getIntent().getStringExtra("users_type").equals("Followers")) {
             fetchAllFollowers();
-        }
-        else if (getIntent().getStringExtra("users_type").equals("Following")) {
+        } else if (getIntent().getStringExtra("users_type").equals("Following")) {
             fetchAllFollowing();
         }
 
@@ -69,9 +68,9 @@ public class UsersListActivity extends AppCompatActivity {
             }
 
         });
-        }
+    }
 
-    public void fetchAllFollowing(){
+    public void fetchAllFollowing() {
         TwitterApplication.getRestClient().getUserFollowing(userId, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {
@@ -102,5 +101,5 @@ public class UsersListActivity extends AppCompatActivity {
         });
     }
 
-    }
+}
 

@@ -33,7 +33,6 @@ public class UserTimelineFragment extends TweetsFragment {
         final View v = inflater.inflate(R.layout.fragment_tweets, parent, false);
 
         rvTweets = (RecyclerView) v.findViewById(R.id.rvTweets);
-
         StaggeredGridLayoutManager gridLayoutManager =
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         gridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
@@ -121,5 +120,4 @@ public class UserTimelineFragment extends TweetsFragment {
 
 
     }
-
 }
