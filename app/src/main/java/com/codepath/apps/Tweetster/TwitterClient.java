@@ -46,7 +46,7 @@ public class TwitterClient extends OAuthBaseClient {
         //specify the params
 
         RequestParams params = new RequestParams();
-        params.put("count", 50);
+        params.put("count", 20);
         if (page == 0) {
             params.put("since_id", since_id);
 
@@ -92,7 +92,7 @@ public class TwitterClient extends OAuthBaseClient {
         //specify the params
 
         RequestParams params = new RequestParams();
-        params.put("count", 50);
+        params.put("count", 20);
         //Execute the request
         getClient().get(apiUrl, params, handler);
 
@@ -101,7 +101,7 @@ public class TwitterClient extends OAuthBaseClient {
     public void getUserTimeline(String screenName, AsyncHttpResponseHandler handler) {
         String apiUrl = getApiUrl("statuses/user_timeline.json");
         RequestParams params = new RequestParams();
-        params.put("count", 25);
+        params.put("count", 20);
         params.put("screen_name", screenName);
         getClient().get(apiUrl, params, handler);
     }
@@ -122,7 +122,7 @@ public class TwitterClient extends OAuthBaseClient {
         String apiURL = getApiUrl("followers/list.json");
         RequestParams params = new RequestParams();
         params.put("user_id",user_id);
-        params.put("count",100);
+        params.put("count",20);
         client.get(apiURL,params,handler);
     }
 
@@ -130,7 +130,7 @@ public class TwitterClient extends OAuthBaseClient {
         String apiURL = getApiUrl("friends/list.json");
         RequestParams params = new RequestParams();
         params.put("user_id",user_id);
-        params.put("count",100);
+        params.put("count",20);
         client.get(apiURL,params,handler);
     }
 
@@ -144,11 +144,11 @@ public class TwitterClient extends OAuthBaseClient {
 
         if (isScrolled) {
             params.put("max_id", maxId);
-            params.put("count", 25);
+            params.put("count", 20);
         } else if(isRefreshed) {
             params.put("since_id", sinceId);
         } else {
-            params.put("count", 25);
+            params.put("count", 20);
             params.put("since_id", 1); //get latest tweets
         }
 
